@@ -24,17 +24,17 @@ private:
 
 public slots:
 
-    void startServer();                             //старт сертвера
-    void incomingConnection(int socketDescriptor);  //новое соединение
-    void sockReady();                               //готовность к чтения сокета
-    void sockWrite(QByteArray);                     //запись сокета
-    void sockDisk();                                //отсоединение сокета
+    void startServer();                             //СЃС‚Р°СЂС‚ СЃРµСЂС‚РІРµСЂР°
+    void incomingConnection(int socketDescriptor);  //РЅРѕРІРѕРµ СЃРѕРµРґРёРЅРµРЅРёРµ
+    void sockReady();                               //РіРѕС‚РѕРІРЅРѕСЃС‚СЊ Рє С‡С‚РµРЅРёСЏ СЃРѕРєРµС‚Р°
+    void sockWrite(QByteArray);                     //Р·Р°РїРёСЃСЊ СЃРѕРєРµС‚Р°
+    void sockDisk();                                //РѕС‚СЃРѕРµРґРёРЅРµРЅРёРµ СЃРѕРєРµС‚Р°
 
 signals:
 
     void packReady(QByteArray);
 
-    void connected();                               //сигнал о новом подсоединении клиента
+    void connected();                               //СЃРёРіРЅР°Р» Рѕ РЅРѕРІРѕРј РїРѕРґСЃРѕРµРґРёРЅРµРЅРёРё РєР»РёРµРЅС‚Р°
 };
 
 #endif // SERVER_H

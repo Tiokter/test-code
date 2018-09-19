@@ -9,26 +9,26 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     connect(&client,SIGNAL(packReady(QByteArray)),this,SLOT(fromSimPac(const QByteArray &)));
 
-    //добавление светлого стиля
+    //РґРѕР±Р°РІР»РµРЅРёРµ СЃРІРµС‚Р»РѕРіРѕ СЃС‚РёР»СЏ
     qApp->setStyle(QStyleFactory::create("Cleanlooks"));
 
     ui->setupUi(this);
     onLoad();
 
-    // Добавляем графическую сцену
+    // Р”РѕР±Р°РІР»СЏРµРј РіСЂР°С„РёС‡РµСЃРєСѓСЋ СЃС†РµРЅСѓ
     scene = new QGraphicsScene(this);
 
     scene->setBackgroundBrush(QColor(255, 52, 52));
 
     ui->graphicsView->setScene(scene);
 
-    //Задаём цвета заливки, цвет и толщину кисти для рисования
+    //Р—Р°РґР°С‘Рј С†РІРµС‚Р° Р·Р°Р»РёРІРєРё, С†РІРµС‚ Рё С‚РѕР»С‰РёРЅСѓ РєРёСЃС‚Рё РґР»СЏ СЂРёСЃРѕРІР°РЅРёСЏ
     QBrush greenBrush(Qt::green);
     QBrush redBrush(QColor(255, 52, 52));
     QPen outlinePen(Qt::black);
     outlinePen.setWidth(2);
 
-    // рисуем квадратики (x,y,w,h,pen,brush)
+    // СЂРёСЃСѓРµРј РєРІР°РґСЂР°С‚РёРєРё (x,y,w,h,pen,brush)
     rect = scene->addRect(0, 0, 50, 50, outlinePen, redBrush);
     rect2 = scene->addRect(50, 0, 50, 50, outlinePen, redBrush);
     rect3 = scene->addRect(100, 0, 50, 50, outlinePen, redBrush);
@@ -44,18 +44,18 @@ MainWindow::~MainWindow()
 }
 void MainWindow::scene_update()
 {
-    //если кнопка нажата
+    //РµСЃР»Рё РєРЅРѕРїРєР° РЅР°Р¶Р°С‚Р°
     if(ui->buttonOn1->isChecked())
     {
-        //закрашиваем квадратик и сцену(фон) зелёным
+        //Р·Р°РєСЂР°С€РёРІР°РµРј РєРІР°РґСЂР°С‚РёРє Рё СЃС†РµРЅСѓ(С„РѕРЅ) Р·РµР»С‘РЅС‹Рј
         rect->setBrush(QBrush(QColor(145, 190, 22)));
         scene->setBackgroundBrush(QColor(145, 190, 22));
         update();
     }
-    //если не нажата
+    //РµСЃР»Рё РЅРµ РЅР°Р¶Р°С‚Р°
     else
     {
-        //закрашиваем квадратик красным
+        //Р·Р°РєСЂР°С€РёРІР°РµРј РєРІР°РґСЂР°С‚РёРє РєСЂР°СЃРЅС‹Рј
         rect->setBrush(QBrush(QColor(255, 52, 52)));
         update();
     }
@@ -81,7 +81,7 @@ void MainWindow::scene_update()
         rect3->setBrush(QBrush(QColor(255, 52, 52)));
         update();
     }
-    //если все квадратики НЕ нажаты закрашиваем сцену красным
+    //РµСЃР»Рё РІСЃРµ РєРІР°РґСЂР°С‚РёРєРё РќР• РЅР°Р¶Р°С‚С‹ Р·Р°РєСЂР°С€РёРІР°РµРј СЃС†РµРЅСѓ РєСЂР°СЃРЅС‹Рј
     if (!ui->buttonOn1->isChecked() && !ui->buttonOn2->isChecked() && !ui->buttonOn3->isChecked())
     {
         scene->setBackgroundBrush(QColor(255, 52, 52));
@@ -89,23 +89,23 @@ void MainWindow::scene_update()
     }
 }
 // ======================================================================
-//Получение значений отображаемых параметров от сервера(имитатора)
+//РџРѕР»СѓС‡РµРЅРёРµ Р·РЅР°С‡РµРЅРёР№ РѕС‚РѕР±СЂР°Р¶Р°РµРјС‹С… РїР°СЂР°РјРµС‚СЂРѕРІ РѕС‚ СЃРµСЂРІРµСЂР°(РёРјРёС‚Р°С‚РѕСЂР°)
 void MainWindow::fromSimPac(const QByteArray &pack)
 {
     packet.byByteArray(pack);
 
     ui->tempLbl->blockSignals(true);
-    if (ui->label_tempIndex->text() == "°C")
+    if (ui->label_tempIndex->text() == "В°C")
     {
         ui->tempLbl-> setText(packet.getTemp());
     }
-    //перевод  в градусы Фаренгейта
-    else if (ui->label_tempIndex->text() == "°F")
+    //РїРµСЂРµРІРѕРґ  РІ РіСЂР°РґСѓСЃС‹ Р¤Р°СЂРµРЅРіРµР№С‚Р°
+    else if (ui->label_tempIndex->text() == "В°F")
     {
         ui->tempLbl-> setText(packet.getTemp());
         ui->tempLbl->setText(QString::number((ui->tempLbl->text()).toFloat()/ 5 * 9 + 32));
     }
-    //перевод  в Кельвины
+    //РїРµСЂРµРІРѕРґ  РІ РљРµР»СЊРІРёРЅС‹
     else if (ui->label_tempIndex->text() == "K")
     {
         ui->tempLbl-> setText(packet.getTemp());
@@ -121,8 +121,7 @@ void MainWindow::fromSimPac(const QByteArray &pack)
     ui->gradLbl-> setText(packet.getGrad());
     ui->gradLbl->blockSignals(false);
 
-
-    //Получив данные, если у пользователя были сохранены настройки отображения давления в Паскалях, переводим значение в Па
+    //РџРѕР»СѓС‡РёРІ РґР°РЅРЅС‹Рµ, РµСЃР»Рё Сѓ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ Р±С‹Р»Рё СЃРѕС…СЂР°РЅРµРЅС‹ РЅР°СЃС‚СЂРѕР№РєРё РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РґР°РІР»РµРЅРёСЏ РІ РџР°СЃРєР°Р»СЏС…, РїРµСЂРµРІРѕРґРёРј Р·РЅР°С‡РµРЅРёРµ РІ РџР°
     ui->pressLbl->blockSignals(true);
     if (ui->label_pressIndex->text() == "Pa")
     {
@@ -149,19 +148,19 @@ void MainWindow::fromSimPac(const QByteArray &pack)
     scene_update();
 }
 // ======================================================================
-//метод  упаковщика всех данных из полей в пакет
+//РјРµС‚РѕРґ  СѓРїР°РєРѕРІС‰РёРєР° РІСЃРµС… РґР°РЅРЅС‹С… РёР· РїРѕР»РµР№ РІ РїР°РєРµС‚
 void MainWindow::CopPac()
 {
-    if (ui->label_tempIndex->text() == "°C")
+    if (ui->label_tempIndex->text() == "В°C")
     {
         packet.setTemp(ui->tempLbl-> text());
     }
-    //перевод  в градусы Цельсия из Фаренгейта
-    else if (ui->label_tempIndex->text() == "°F")
+    //РїРµСЂРµРІРѕРґ  РІ РіСЂР°РґСѓСЃС‹ Р¦РµР»СЊСЃРёСЏ РёР· Р¤Р°СЂРµРЅРіРµР№С‚Р°
+    else if (ui->label_tempIndex->text() == "В°F")
     {
         packet.setTemp(QString::number(((ui->tempLbl->text()).toFloat()- 32) * 5 / 9));
     }
-    //перевод в градусы Цельсия из Кельвинов
+    //РїРµСЂРµРІРѕРґ РІ РіСЂР°РґСѓСЃС‹ Р¦РµР»СЊСЃРёСЏ РёР· РљРµР»СЊРІРёРЅРѕРІ
     else if (ui->label_tempIndex->text() == "K")
     {
         packet.setTemp(QString::number((ui->tempLbl->text()).toFloat()- 273.15));
@@ -185,10 +184,10 @@ void MainWindow::CopPac()
     client.sockWrite(packet.toByteArray());
 }
 // ======================================================================
-//Повышение температуры
+//РџРѕРІС‹С€РµРЅРёРµ С‚РµРјРїРµСЂР°С‚СѓСЂС‹
 void MainWindow::on_buttonTempUp_clicked()
 {
-    if (ui->label_tempIndex->text() == "°C")
+    if (ui->label_tempIndex->text() == "В°C")
     {
         if ((ui->tempLbl->text()).toFloat() < 80 )
         {
@@ -196,61 +195,59 @@ void MainWindow::on_buttonTempUp_clicked()
         CopPac();
         }
     }
-    // из фаренгейта
-    else if (ui->label_tempIndex->text() == "°F")
+    // РёР· С„Р°СЂРµРЅРіРµР№С‚Р°
+    else if (ui->label_tempIndex->text() == "В°F")
     {
         if ((ui->tempLbl->text()).toFloat() < 176 )
         {
         ui->tempLbl->setText(QString::number((ui->tempLbl->text()).toFloat() + 0.5));
-        //запись изменения в пакет
+        //Р·Р°РїРёСЃСЊ РёР·РјРµРЅРµРЅРёСЏ РІ РїР°РєРµС‚
         CopPac();
         }
     }
-    //перевод из Кельвинов
+    //РїРµСЂРµРІРѕРґ РёР· РљРµР»СЊРІРёРЅРѕРІ
     else if (ui->label_tempIndex->text() == "K")
     {
         if ((ui->tempLbl->text()).toFloat() < 353 )
         {
         ui->tempLbl->setText(QString::number((ui->tempLbl->text()).toFloat() + 0.5));
-        //запись изменения в пакет
         CopPac();
         }
     }
 }
-//Понижение температуры
-void MainWindow::on_buttonTempDown_clicked()
+//РџРѕРІС‹С€РµРЅРёРµ С‚РµРјРїРµСЂР°С‚СѓСЂС‹
+void MainWindow::on_buttonTempUp_clicked()
 {
-    if (ui->label_tempIndex->text() == "°C")
+    if (ui->label_tempIndex->text() == "В°C")
     {
-        if ((ui->tempLbl->text()).toFloat() > -50)
+        if ((ui->tempLbl->text()).toFloat() < 80 )
         {
-        ui->tempLbl->setText(QString::number((ui->tempLbl->text()).toFloat() - 0.5));
+        ui->tempLbl->setText(QString::number((ui->tempLbl->text()).toFloat() + 0.5));
         CopPac();
         }
     }
-    // из фаренгейта
-    else if (ui->label_tempIndex->text() == "°F")
+    // РёР· С„Р°СЂРµРЅРіРµР№С‚Р°
+    else if (ui->label_tempIndex->text() == "В°F")
     {
-        if ((ui->tempLbl->text()).toFloat() > -58)
+        if ((ui->tempLbl->text()).toFloat() < 176 )
         {
-        ui->tempLbl->setText(QString::number((ui->tempLbl->text()).toFloat() - 0.5));
-        //запись изменения в пакет
+        ui->tempLbl->setText(QString::number((ui->tempLbl->text()).toFloat() + 0.5));
+        //Р·Р°РїРёСЃСЊ РёР·РјРµРЅРµРЅРёСЏ РІ РїР°РєРµС‚
         CopPac();
         }
     }
-    //перевод из Кельвинов
+    //РїРµСЂРµРІРѕРґ РёР· РљРµР»СЊРІРёРЅРѕРІ
     else if (ui->label_tempIndex->text() == "K")
     {
         if ((ui->tempLbl->text()).toFloat() > 223.3)
         {
         ui->tempLbl->setText(QString::number((ui->tempLbl->text()).toFloat() - 0.5));
-        //запись изменения в пакет
         CopPac();
         }
     }
 }
 // ======================================================================
-//Повышение угла подачи воздуха
+//РџРѕРІС‹С€РµРЅРёРµ СѓРіР»Р° РїРѕРґР°С‡Рё РІРѕР·РґСѓС…Р°
 void MainWindow::on_buttonGradUp_clicked()
 {
     if (ui->gradLbl->text().toFloat() < 130 && ui->gradLbl->text().toFloat() > 40)
@@ -259,7 +256,7 @@ void MainWindow::on_buttonGradUp_clicked()
     }
     CopPac();
 }
-//Понижение угла подачи воздуха
+//РџРѕРЅРёР¶РµРЅРёРµ СѓРіР»Р° РїРѕРґР°С‡Рё РІРѕР·РґСѓС…Р°
 void MainWindow::on_buttonGradDown_clicked()
 {
     if (ui->gradLbl->text().toFloat() <= 130 && ui->gradLbl->text().toFloat() > 50)
@@ -269,26 +266,26 @@ void MainWindow::on_buttonGradDown_clicked()
     CopPac();
 }
 // ======================================================================
-//изменение отображения статуса работы кондиционера (цвета блока 1)
+//РёР·РјРµРЅРµРЅРёРµ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ СЃС‚Р°С‚СѓСЃР° СЂР°Р±РѕС‚С‹ РєРѕРЅРґРёС†РёРѕРЅРµСЂР° (С†РІРµС‚Р° Р±Р»РѕРєР° 1)
 void MainWindow::on_buttonOn1_toggled(bool checked)
 {
     scene_update();
     CopPac();
 }
-//изменение отображения статуса работы кондиционера (цвета блока 2)
+//РёР·РјРµРЅРµРЅРёРµ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ СЃС‚Р°С‚СѓСЃР° СЂР°Р±РѕС‚С‹ РєРѕРЅРґРёС†РёРѕРЅРµСЂР° (С†РІРµС‚Р° Р±Р»РѕРєР° 2)
 void MainWindow::on_buttonOn2_toggled(bool checked)
 {
     scene_update();
     CopPac();
 }
-//изменение отображения статуса работы кондиционера (цвета блока 3)
+//РёР·РјРµРЅРµРЅРёРµ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ СЃС‚Р°С‚СѓСЃР° СЂР°Р±РѕС‚С‹ РєРѕРЅРґРёС†РёРѕРЅРµСЂР° (С†РІРµС‚Р° Р±Р»РѕРєР° 3)
 void MainWindow::on_buttonOn3_toggled(bool checked)
 {
     scene_update();
     CopPac();
 }
 // ======================================================================
-//метод  сохранения всех данных в XML
+//РјРµС‚РѕРґ  СЃРѕС…СЂР°РЅРµРЅРёСЏ РІСЃРµС… РґР°РЅРЅС‹С… РІ XML
 void MainWindow::onSave()
 {
     QFile file("D:/Condi/ControlPanel/ControlPanel/cpXML.xml");
@@ -314,13 +311,13 @@ void MainWindow::onSave()
     xmlWriter.writeEndElement();
 
     xmlWriter.writeEndElement();
-    //Завершаем запись в документ
+    //Г‡Е•ГўДєД‘Е™Е•ДєД› Г§Е•ДЏДЌЕ„Гј Гў Г¤Г®Д™ГіД›ДєГ­Е€
     xmlWriter.writeEndDocument();
 
     file.close();
     qDebug() << "file save";
 }
-//метод  загрузки всех данных из XML
+//РјРµС‚РѕРґ  Р·Р°РіСЂСѓР·РєРё РІСЃРµС… РґР°РЅРЅС‹С… РёР· XML
 void MainWindow::onLoad()
 {
     QFile file("D:/Condi/ControlPanel/ControlPanel/cpXML.xml");
@@ -362,53 +359,53 @@ void MainWindow::onLoad()
     }
 }
 // ======================================================================
-//перевод  в градусы Фаренгейта
+//РїРµСЂРµРІРѕРґ  РІ РіСЂР°РґСѓСЃС‹ Р¤Р°СЂРµРЅРіРµР№С‚Р°
 void MainWindow::on_action_toFaren_triggered()
 {
-      // из цельсия
-      if (ui->label_tempIndex->text() == "°C")
+      // РёР· С†РµР»СЊСЃРёСЏ
+      if (ui->label_tempIndex->text() == "В°C")
       {
         ui->tempLbl->setText(QString::number((ui->tempLbl->text()).toFloat()/ 5 * 9 + 32));
       }
-      // из кельвина
+      // РёР· РєРµР»СЊРІРёРЅР°
       else if (ui->label_tempIndex->text() == "K")
       {
         ui->tempLbl->setText(QString::number(((ui->tempLbl->text()).toFloat()- 273.15) / 5 * 9 + 32));
       }
-      ui->label_tempIndex->setText("°F");
+      ui->label_tempIndex->setText("В°F");
 }
-//перевод  в градусы Цельсия
+//РїРµСЂРµРІРѕРґ  РІ РіСЂР°РґСѓСЃС‹ Р¦РµР»СЊСЃРёСЏ
 void MainWindow::on_action_toCelsi_triggered()
 {
-    // из фаренгейта
-    if (ui->label_tempIndex->text() == "°F")
+    // РёР· С„Р°СЂРµРЅРіРµР№С‚Р°
+    if (ui->label_tempIndex->text() == "В°F")
     {
         ui->tempLbl->setText(QString::number(((ui->tempLbl->text()).toFloat()- 32) * 5 / 9));
     }
-    // из кельвина
+    // РёР· РєРµР»СЊРІРёРЅР°
     else if (ui->label_tempIndex->text() == "K")
     {
         ui->tempLbl->setText(QString::number((ui->tempLbl->text()).toFloat() - 273.15));
     }
-    ui->label_tempIndex->setText("°C");
+    ui->label_tempIndex->setText("В°C");
 }
-//перевод  в Кельвины
+//РїРµСЂРµРІРѕРґ  РІ РљРµР»СЊРІРёРЅС‹
 void MainWindow::on_action_toKelv_triggered()
 {
-    // из цельсия
-    if (ui->label_tempIndex->text() == "°C")
+    // РёР· С†РµР»СЊСЃРёСЏ
+    if (ui->label_tempIndex->text() == "В°C")
     {
         ui->tempLbl->setText(QString::number((ui->tempLbl->text()).toFloat()+ 273.15));
     }
-    // из фаренгейта
-    else if (ui->label_tempIndex->text() == "°F")
+    // РёР· С„Р°СЂРµРЅРіРµР№С‚Р°
+    else if (ui->label_tempIndex->text() == "В°F")
     {
         ui->tempLbl->setText(QString::number(((ui->tempLbl->text()).toFloat()- 32) * 5 / 9 + 273.15));
     }
     ui->label_tempIndex->setText("K");
 }
 // ======================================================================
-// перевод давления в мм.рт.ст
+// РїРµСЂРµРІРѕРґ РґР°РІР»РµРЅРёСЏ РІ РјРј.СЂС‚.СЃС‚
 void MainWindow::on_action_toMm_triggered()
 {
     if (ui->label_pressIndex->text() == "Pa")
@@ -417,7 +414,7 @@ void MainWindow::on_action_toMm_triggered()
     }
     ui->label_pressIndex->setText("mm");
 }
-// перевод давления в Па
+// РїРµСЂРµРІРѕРґ РґР°РІР»РµРЅРёСЏ РІ РџР°
 void MainWindow::on_action_toPascal_triggered()
 {
     if (ui->label_pressIndex->text() == "mm")
@@ -427,28 +424,28 @@ void MainWindow::on_action_toPascal_triggered()
     ui->label_pressIndex->setText("Pa");
 }
 // ======================================================================
-// Слот обработчик клика кнопки для установки тёмного или светлого оформления
+// РЎР»РѕС‚ РѕР±СЂР°Р±РѕС‚С‡РёРє РєР»РёРєР° РєРЅРѕРїРєРё РґР»СЏ СѓСЃС‚Р°РЅРѕРІРєРё С‚С‘РјРЅРѕРіРѕ РёР»Рё СЃРІРµС‚Р»РѕРіРѕ РѕС„РѕСЂРјР»РµРЅРёСЏ
 void MainWindow::on_darkPushButton_toggled(bool checked)
 {
     if(checked)
-    {// Создаём палитру для тёмной темы оформления
+    {// РЎРѕР·РґР°С‘Рј РїР°Р»РёС‚СЂСѓ РґР»СЏ С‚С‘РјРЅРѕР№ С‚РµРјС‹ РѕС„РѕСЂРјР»РµРЅРёСЏ
         QPalette darkPalette;
 
-        // Настраиваем палитру для цветовых ролей элементов интерфейса
+        // РќР°СЃС‚СЂР°РёРІР°РµРј РїР°Р»РёС‚СЂСѓ РґР»СЏ С†РІРµС‚РѕРІС‹С… СЂРѕР»РµР№ СЌР»РµРјРµРЅС‚РѕРІ РёРЅС‚РµСЂС„РµР№СЃР°
         darkPalette.setColor(QPalette::Window, QColor(80, 77, 30));
         darkPalette.setColor(QPalette::WindowText, Qt::white);
         darkPalette.setColor(QPalette::Text, Qt::white);
         darkPalette.setColor(QPalette::Button, QColor(178, 172, 68));
         darkPalette.setColor(QPalette::ButtonText, Qt::white);
 
-        // Устанавливаем данную палитру
+        // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј РґР°РЅРЅСѓСЋ РїР°Р»РёС‚СЂСѓ
         qApp->setPalette(darkPalette);
-        //меняем текст кнопки
+        //РјРµРЅСЏРµРј С‚РµРєСЃС‚ РєРЅРѕРїРєРё
         ui->darkPushButton->setText("Light");
     }
     else
     {
-        // Для возврата к светлой палитре устанавливаем стандартную палитру из темы оформления
+        // Р”Р»СЏ РІРѕР·РІСЂР°С‚Р° Рє СЃРІРµС‚Р»РѕР№ РїР°Р»РёС‚СЂРµ СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј СЃС‚Р°РЅРґР°СЂС‚РЅСѓСЋ РїР°Р»РёС‚СЂСѓ РёР· С‚РµРјС‹ РѕС„РѕСЂРјР»РµРЅРёСЏ
         qApp->setPalette(style()->standardPalette());
         ui->darkPushButton->setText("Dark");
     }

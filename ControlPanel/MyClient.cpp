@@ -36,7 +36,7 @@ void MyClient::sockReady()
     socket-> waitForReadyRead(500);
     packet = socket->readAll();
 
-    //подача сигнала что пакет принят
+    //РїРѕРґР°С‡Р° СЃРёРіРЅР°Р»Р° С‡С‚Рѕ РїР°РєРµС‚ РїСЂРёРЅСЏС‚
     emit packReady(packet);
 }
 void MyClient::sockWrite(QByteArray xzc)
@@ -53,6 +53,6 @@ void MyClient::sockDisk()
     qDebug() << "Disconnect";
     state = false;
     socket->deleteLater();
-    //при потере свзязи (дисконнекте) опять ищем сервер
+    //РїСЂРё РїРѕС‚РµСЂРµ СЃРІР·СЏР·Рё (РґРёСЃРєРѕРЅРЅРµРєС‚Рµ) РѕРїСЏС‚СЊ РёС‰РµРј СЃРµСЂРІРµСЂ
     //makeSocket("localhost",33333);
 }

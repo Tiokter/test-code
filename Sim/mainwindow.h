@@ -41,39 +41,33 @@ public:
     QXmlStreamReader xmlReader();
 
 private slots:
-    //слот на изменение темепературы
+    //СЃР»РѕС‚ РЅР° РёР·РјРµРЅРµРЅРёРµ С‚РµРјРµРїРµСЂР°С‚СѓСЂС‹
     void on_tempSpinBox_valueChanged(const QString &arg1);
-    //слот на изменение влажности
+    //СЃР»РѕС‚ РЅР° РёР·РјРµРЅРµРЅРёРµ РІР»Р°Р¶РЅРѕСЃС‚Рё
     void on_humiSpinBox_valueChanged(const QString &arg1);
-    //слот на изменение градуса поврота
+    //СЃР»РѕС‚ РЅР° РёР·РјРµРЅРµРЅРёРµ РіСЂР°РґСѓСЃР° РїРѕРІСЂРѕС‚Р°
     void on_gradSpinBox_valueChanged(const QString &arg1);
-    //слот на изменение давления
+    //СЃР»РѕС‚ РЅР° РёР·РјРµРЅРµРЅРёРµ РґР°РІР»РµРЅРёСЏ
     void on_pressSpinBox_valueChanged(const QString &arg1);
 
-    //слот на изменение положения кнопки включения Блоков  1-3
+    //СЃР»РѕС‚ РЅР° РёР·РјРµРЅРµРЅРёРµ РїРѕР»РѕР¶РµРЅРёСЏ РєРЅРѕРїРєРё РІРєР»СЋС‡РµРЅРёСЏ Р‘Р»РѕРєРѕРІ  1-3
     void on_pushButton_1_toggled(bool checked);
     void on_pushButton_2_toggled(bool checked);
     void on_pushButton_3_toggled(bool checked);
 
-
-    //слот упаковщика всех данных из пакеа в поля
+    //СЃР»РѕС‚ СѓРїР°РєРѕРІС‰РёРєР° РІСЃРµС… РґР°РЅРЅС‹С… РёР· РїР°РєРµР° РІ РїРѕР»СЏ
     void fromCopPac(const QByteArray &pack);
-
+    //СЃР»РѕС‚ РЅР° СЃРѕС…СЂР°РЅРµРЅРЅРёРµ РІ XML
     void onSave();
 
     void onLoad();
 
 public slots:
-    //слот упаковщика всех данных из полей в пакет
+    //СЃР»РѕС‚ СѓРїР°РєРѕРІС‰РёРєР° РІСЃРµС… РґР°РЅРЅС‹С… РёР· РїРѕР»РµР№ РІ РїР°РєРµС‚
     void SimPac();
 
 private:
-
     Ui::Simulator *ui;
-    //слот на сохраненние в XML
-
-signals:
-
 };
 
 #endif // MAINWINDOW_H

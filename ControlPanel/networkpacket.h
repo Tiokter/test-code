@@ -8,7 +8,7 @@ class NetworkPacket : public QByteArray
 {
 public:
 
-    //Приём данных
+    //РџСЂРёС‘Рј РґР°РЅРЅС‹С…
     void byByteArray(QByteArray  arr);
 
     QString tempSpinBox;
@@ -29,7 +29,7 @@ public:
     bool getButton2();
     bool getButton3();
 // ======================================================================
-    //Передача данных
+    //РџРµСЂРµРґР°С‡Р° РґР°РЅРЅС‹С…
     QByteArray toByteArray();
 
     QString tempLbl;

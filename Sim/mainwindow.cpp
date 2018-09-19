@@ -13,58 +13,56 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     onLoad();
     setWindowTitle("Condi simulator");
-
 }
 MainWindow::~MainWindow()
 {
     onSave();
     delete ui;
 }
-
-//метод реагирующий на изменение значения спинБокса температуры
+//РјРµС‚РѕРґ СЂРµР°РіРёСЂСѓСЋС‰РёР№ РЅР° РёР·РјРµРЅРµРЅРёРµ Р·РЅР°С‡РµРЅРёСЏ СЃРїРёРЅР‘РѕРєСЃР° С‚РµРјРїРµСЂР°С‚СѓСЂС‹
 void MainWindow::on_tempSpinBox_valueChanged(const QString &arg1)
 {
-    packet.setTemp(ui->tempSpinBox-> text());   //запись изменения в пакет
-    Server.sockWrite(packet.toByteArray());     //запись в сокет изменения в виде массива байтов
+    packet.setTemp(ui->tempSpinBox-> text());   //Р·Р°РїРёСЃСЊ РёР·РјРµРЅРµРЅРёСЏ РІ РїР°РєРµС‚
+    Server.sockWrite(packet.toByteArray());     //Р·Р°РїРёСЃСЊ РІ СЃРѕРєРµС‚ РёР·РјРµРЅРµРЅРёСЏ РІ РІРёРґРµ РјР°СЃСЃРёРІР° Р±Р°Р№С‚РѕРІ
 }
-//метод реагирующий на изменение значения спинБокса влажности
+//РјРµС‚РѕРґ СЂРµР°РіРёСЂСѓСЋС‰РёР№ РЅР° РёР·РјРµРЅРµРЅРёРµ Р·РЅР°С‡РµРЅРёСЏ СЃРїРёРЅР‘РѕРєСЃР° РІР»Р°Р¶РЅРѕСЃС‚Рё
 void MainWindow::on_humiSpinBox_valueChanged(const QString &arg1)
 {
     packet.setHumi(ui->humiSpinBox-> text());
     Server.sockWrite(packet.toByteArray());
 }
-//метод реагирующий на изменение значения спинБокса градуса поворота
+//РјРµС‚РѕРґ СЂРµР°РіРёСЂСѓСЋС‰РёР№ РЅР° РёР·РјРµРЅРµРЅРёРµ Р·РЅР°С‡РµРЅРёСЏ СЃРїРёРЅР‘РѕРєСЃР° РіСЂР°РґСѓСЃР° РїРѕРІРѕСЂРѕС‚Р°
 void MainWindow::on_gradSpinBox_valueChanged(const QString &arg1)
 {
     packet.setGrad(ui->gradSpinBox-> text());
     Server.sockWrite(packet.toByteArray());
 }
-//метод реагирующий на изменение значения спинБокса давления
+//РјРµС‚РѕРґ СЂРµР°РіРёСЂСѓСЋС‰РёР№ РЅР° РёР·РјРµРЅРµРЅРёРµ Р·РЅР°С‡РµРЅРёСЏ СЃРїРёРЅР‘РѕРєСЃР° РґР°РІР»РµРЅРёСЏ
 void MainWindow::on_pressSpinBox_valueChanged(const QString &arg1)
 {
     packet.setPress(ui->pressSpinBox-> text());
     Server.sockWrite(packet.toByteArray());
 }
-//метод реагирующий на изменение значения нажатия кнопки Блок1
+//РјРµС‚РѕРґ СЂРµР°РіРёСЂСѓСЋС‰РёР№ РЅР° РёР·РјРµРЅРµРЅРёРµ Р·РЅР°С‡РµРЅРёСЏ РЅР°Р¶Р°С‚РёСЏ РєРЅРѕРїРєРё Р‘Р»РѕРє1
 void MainWindow::on_pushButton_1_toggled(bool checked)
 {
     packet.setButton1(ui->pushButton_1-> isChecked());
     Server.sockWrite(packet.toByteArray());
 }
-//метод реагирующий на изменение значения нажатия кнопки Блок2
+//РјРµС‚РѕРґ СЂРµР°РіРёСЂСѓСЋС‰РёР№ РЅР° РёР·РјРµРЅРµРЅРёРµ Р·РЅР°С‡РµРЅРёСЏ РЅР°Р¶Р°С‚РёСЏ РєРЅРѕРїРєРё Р‘Р»РѕРє2
 void MainWindow::on_pushButton_2_toggled(bool checked)
 {
     packet.setButton2(ui->pushButton_2-> isChecked());
     Server.sockWrite(packet.toByteArray());
 }
-//метод реагирующий на изменение значения нажатия кнопки Блок3
+//РјРµС‚РѕРґ СЂРµР°РіРёСЂСѓСЋС‰РёР№ РЅР° РёР·РјРµРЅРµРЅРёРµ Р·РЅР°С‡РµРЅРёСЏ РЅР°Р¶Р°С‚РёСЏ РєРЅРѕРїРєРё Р‘Р»РѕРє3
 void MainWindow::on_pushButton_3_toggled(bool checked)
 {
     packet.setButton3(ui->pushButton_3-> isChecked());
     Server.sockWrite(packet.toByteArray());
 }
 // ======================================================================
-//Передача значений отображаемых параметров от клиента(панели управления)
+//РџРµСЂРµРґР°С‡Р° Р·РЅР°С‡РµРЅРёР№ РѕС‚РѕР±СЂР°Р¶Р°РµРјС‹С… РїР°СЂР°РјРµС‚СЂРѕРІ РѕС‚ РєР»РёРµРЅС‚Р°(РїР°РЅРµР»Рё СѓРїСЂР°РІР»РµРЅРёСЏ)
 void MainWindow::fromCopPac(const QByteArray &pack)
 {
     packet.byByteArray(pack);
@@ -98,7 +96,7 @@ void MainWindow::fromCopPac(const QByteArray &pack)
     ui->pushButton_3->blockSignals(false);
 }
 // ======================================================================
-//метод  сохранения всех данных в XML
+//РјРµС‚РѕРґ  СЃРѕС…СЂР°РЅРµРЅРёСЏ РІСЃРµС… РґР°РЅРЅС‹С… РІ XML
 void MainWindow::onSave()
 {
     QFile file("D:/Condi/Sim/Sim/SimXML.xml");
@@ -140,14 +138,14 @@ void MainWindow::onSave()
     xmlWriter.writeEndElement();
 
     xmlWriter.writeEndElement();
-    //Завершаем запись в документ
+    //Р—Р°РІРµСЂС€Р°РµРј Р·Р°РїРёСЃСЊ РІ РґРѕРєСѓРјРµРЅС‚
     xmlWriter.writeEndDocument();
 
     file.close();
     qDebug() << "file save";
 
 }
-//метод  загрузки всех данных из XML
+//РјРµС‚РѕРґ  Р·Р°РіСЂСѓР·РєРё РІСЃРµС… РґР°РЅРЅС‹С… РёР· XML
 void MainWindow::onLoad()
 {
     QFile file("D:/Condi/Sim/Sim/SimXML.xml");
@@ -220,7 +218,7 @@ void MainWindow::onLoad()
     }
 }
 // ======================================================================
-//метод  упаковщика всех данных из полей в пакет
+//РјРµС‚РѕРґ  СѓРїР°РєРѕРІС‰РёРєР° РІСЃРµС… РґР°РЅРЅС‹С… РёР· РїРѕР»РµР№ РІ РїР°РєРµС‚
 void MainWindow::SimPac()
 {
     packet.setTemp(ui->tempSpinBox-> text());

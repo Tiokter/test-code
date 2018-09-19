@@ -28,9 +28,9 @@ public:
 public slots:
 
     void makeSocket(const QString& strHost,int nPort);
-    void sockReady();                               //готовность к чтения сокета
-    void sockWrite(QByteArray);                     //запись сокета
-    void sockDisk();                                //отсоединение сокета
+    void sockReady();                               //РіРѕС‚РѕРІРЅРѕСЃС‚СЊ Рє С‡С‚РµРЅРёСЏ СЃРѕРєРµС‚Р°
+    void sockWrite(QByteArray);                     //Р·Р°РїРёСЃСЊ СЃРѕРєРµС‚Р°
+    void sockDisk();                                //РѕС‚СЃРѕРµРґРёРЅРµРЅРёРµ СЃРѕРєРµС‚Р°
 
 signals:
 

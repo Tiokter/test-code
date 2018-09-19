@@ -17,17 +17,17 @@ void server::startServer()
         qDebug() << "Not Listening";
     }
 }
-//новое соединение
+//РЅРѕРІРѕРµ СЃРѕРµРґРёРЅРµРЅРёРµ
 void server::incomingConnection(int socketDescriptor)
 {
-    socket = new QTcpSocket(this);                                  //новый сокет
-    socket->setSocketDescriptor(socketDescriptor);                  //задание инд.номера сокету
+    socket = new QTcpSocket(this);                                  //РЅРѕРІС‹Р№ СЃРѕРєРµС‚
+    socket->setSocketDescriptor(socketDescriptor);                  //Р·Р°РґР°РЅРёРµ РёРЅРґ.РЅРѕРјРµСЂР° СЃРѕРєРµС‚Сѓ
 
     state = true;
-    connect(socket,SIGNAL(readyRead()),this,SLOT(sockReady()));     //сигнал о готовности чтения
-    connect(socket,SIGNAL(disconnected()),this,SLOT(sockDisk()));   //сигнал отсоединения
-    emit connected();                                               //сигнал о появлении соединения
-/*проверка соединения
+    connect(socket,SIGNAL(readyRead()),this,SLOT(sockReady()));     //СЃРёРіРЅР°Р» Рѕ РіРѕС‚РѕРІРЅРѕСЃС‚Рё С‡С‚РµРЅРёСЏ
+    connect(socket,SIGNAL(disconnected()),this,SLOT(sockDisk()));   //СЃРёРіРЅР°Р» РѕС‚СЃРѕРµРґРёРЅРµРЅРёСЏ
+    emit connected();                                               //СЃРёРіРЅР°Р» Рѕ РїРѕСЏРІР»РµРЅРёРё СЃРѕРµРґРёРЅРµРЅРёСЏ
+/*РїСЂРѕРІРµСЂРєР° СЃРѕРµРґРёРЅРµРЅРёСЏ
     qDebug()<< socket->isValid ();
     qDebug()<< socket->localAddress ();
     qDebug()<< socket->localPort ();
@@ -43,7 +43,7 @@ void server::sockReady()
     data = socket->readAll();
     emit packReady(data);
 }
-//метод записи в сокет "массива байтов"
+//РјРµС‚РѕРґ Р·Р°РїРёСЃРё РІ СЃРѕРєРµС‚ "РјР°СЃСЃРёРІР° Р±Р°Р№С‚РѕРІ"
 void server::sockWrite(QByteArray xzc)
 {
 
@@ -55,7 +55,7 @@ void server::sockWrite(QByteArray xzc)
         socket->waitForBytesWritten(500);
     }
 }
-//метод отсоединения
+//РјРµС‚РѕРґ РѕС‚СЃРѕРµРґРёРЅРµРЅРёСЏ
 void server::sockDisk()
 {
     qDebug() << "Disconnect";

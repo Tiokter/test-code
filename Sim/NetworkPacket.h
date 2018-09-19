@@ -7,16 +7,15 @@
 class NetworkPacket : public QByteArray
 {
 public:
-
-    //Передача данных
-    //метод упаковки в "массив байтов"
+    //РџРµСЂРµРґР°С‡Р° РґР°РЅРЅС‹С…
+    //РјРµС‚РѕРґ СѓРїР°РєРѕРІРєРё РІ "РјР°СЃСЃРёРІ Р±Р°Р№С‚РѕРІ"
     QByteArray toByteArray();
 
     QString tempSpinBox;
     QString humiSpinBox;
     QString gradSpinBox;
     QString pressSpinBox;
-    //методы взятия текста из полей
+    //РјРµС‚РѕРґС‹ РІР·СЏС‚РёСЏ С‚РµРєСЃС‚Р° РёР· РїРѕР»РµР№
     void setTemp(QString txt);
     void setHumi(QString txt);
     void setGrad(QString txt);
@@ -25,14 +24,12 @@ public:
     bool Button1;
     bool Button2;
     bool Button3;
-    //методы взятия значения кнопок из полей
+    //РјРµС‚РѕРґС‹ РІР·СЏС‚РёСЏ Р·РЅР°С‡РµРЅРёСЏ РєРЅРѕРїРѕРє РёР· РїРѕР»РµР№
     void setButton1(bool ar);
     void setButton2(bool ar);
     void setButton3(bool ar);
-
     // ======================================================================
-
-    //Приём данных
+    //РџСЂРёС‘Рј РґР°РЅРЅС‹С…
     void byByteArray(QByteArray  arr);
 
     QString tempLbl;
@@ -52,8 +49,5 @@ public:
     bool getbuttonOn1();
     bool getbuttonOn2();
     bool getbuttonOn3();
-
-
 };
-
 #endif // NETWORKPACKET_H

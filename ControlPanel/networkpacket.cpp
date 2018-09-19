@@ -3,7 +3,7 @@
 #include <QDebug>
 
 
-//Приём данных
+//РџСЂРёС‘Рј РґР°РЅРЅС‹С…
 void NetworkPacket::byByteArray(QByteArray  arr)
 {
     QDataStream in(&arr, QIODevice::ReadOnly);
@@ -17,7 +17,7 @@ void NetworkPacket::byByteArray(QByteArray  arr)
         >> Button3;
 }
 // ======================================================================
-//методы взятия значений полей и кнопок из пакета
+//РјРµС‚РѕРґС‹ РІР·СЏС‚РёСЏ Р·РЅР°С‡РµРЅРёР№ РїРѕР»РµР№ Рё РєРЅРѕРїРѕРє РёР· РїР°РєРµС‚Р°
 QString NetworkPacket::getTemp()
 {
     return tempSpinBox;
@@ -48,7 +48,7 @@ bool NetworkPacket::getButton3()
 }
 
 // ======================================================================
-//метод  упаковщика данных в "массив байтов"
+//РјРµС‚РѕРґ  СѓРїР°РєРѕРІС‰РёРєР° РґР°РЅРЅС‹С… РІ "РјР°СЃСЃРёРІ Р±Р°Р№С‚РѕРІ"
 QByteArray NetworkPacket::toByteArray()
 {
       QByteArray  arr;
@@ -64,7 +64,7 @@ QByteArray NetworkPacket::toByteArray()
           << buttonOn3;
       return arr;
 }
-//методы  взятия текста из лэйблов и значений с кнопок
+//РјРµС‚РѕРґС‹  РІР·СЏС‚РёСЏ С‚РµРєСЃС‚Р° РёР· Р»СЌР№Р±Р»РѕРІ Рё Р·РЅР°С‡РµРЅРёР№ СЃ РєРЅРѕРїРѕРє
 void NetworkPacket::setTemp(QString txt)
 {
     tempLbl = txt;
@@ -101,4 +101,3 @@ void NetworkPacket::setbuttonOn3(bool ar)
     buttonOn3 = ar;
     qDebug()<< buttonOn3;
 }
-

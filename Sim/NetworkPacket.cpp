@@ -2,8 +2,8 @@
 #include <QString>
 #include <QDebug>
 
-//Передача данных
-//метод  упаковщика данных в "массив байтов"
+//РџРµСЂРµРґР°С‡Р° РґР°РЅРЅС‹С…
+//РјРµС‚РѕРґ  СѓРїР°РєРѕРІС‰РёРєР° РґР°РЅРЅС‹С… РІ "РјР°СЃСЃРёРІ Р±Р°Р№С‚РѕРІ"
 QByteArray NetworkPacket::toByteArray()
 {
       QByteArray  arr;
@@ -19,7 +19,7 @@ QByteArray NetworkPacket::toByteArray()
           << Button3;
       return arr;
 }
-//методы  взятия текста из спинБоксов и значений с кнопок
+//РјРµС‚РѕРґС‹  РІР·СЏС‚РёСЏ С‚РµРєСЃС‚Р° РёР· СЃРїРёРЅР‘РѕРєСЃРѕРІ Рё Р·РЅР°С‡РµРЅРёР№ СЃ РєРЅРѕРїРѕРє
 void NetworkPacket::setTemp(QString txt)
 {
     tempSpinBox = txt;
@@ -70,7 +70,7 @@ void NetworkPacket::byByteArray(QByteArray  ar)
         >> buttonOn3;
 }
 // ======================================================================
-//методы взятия значений полей и кнопок
+//РјРµС‚РѕРґС‹ РІР·СЏС‚РёСЏ Р·РЅР°С‡РµРЅРёР№ РїРѕР»РµР№ Рё РєРЅРѕРїРѕРє
 QString NetworkPacket::getTemp()
 {
     return tempLbl;
